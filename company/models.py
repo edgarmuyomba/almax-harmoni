@@ -9,3 +9,6 @@ class Company(models.Model):
     
     def __str__(self):
         return f"Company: {self.name}"
+    
+    class Meta:
+        verbose_name_plural = "Companies"

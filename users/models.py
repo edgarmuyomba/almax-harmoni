@@ -7,9 +7,11 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return f"User: {self.username}"
     
-class ServiceProvider(CustomUser):
+class ServiceProvider(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     service = models.CharField(max_length=50)
     amount = models.IntegerField()
 
-class Client(CustomUser):
+class Client(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     payment_method = models.ForeignKey("payments.PaymentMethod", on_delete=models.SET_NULL, null=True, blank=True)
