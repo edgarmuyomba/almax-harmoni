@@ -20,3 +20,12 @@ class Booking(models.Model):
     
     def __str__(self):
         return f"Booking for {self.event} by {self.client}"
+    
+class Review(models.Model):
+    client = models.ForeignKey("users.Client", on_delete=models.SET_NULL, null=True, blank=True)
+    event = models.ForeignKey("harmoniconnect.Event", on_delete=models.SET_NULL, null=True, blank=True)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self) -> str:
+        return f"{self.client}, review: {self.text[:50]}..."
